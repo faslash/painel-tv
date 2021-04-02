@@ -12,9 +12,21 @@ body {
 
 .box-tv {
     width: 1500px;
-    height: 800px;
+    height: 835px;
     position: absolute;
     text-decoration: none;
+}
+
+.clock{
+    align-items: center;
+    border: 2cm;
+}
+
+.timer{
+    text-align: center;
+    font-family: monospace;
+    font-size: 5em;
+    padding-top: 0.8em;
 }
 
 .box-tv iframe{
@@ -47,11 +59,12 @@ body {
 }
 
 .senhas-anteriores {
-    margin: 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
     display: flex;
-    height: 100%;
     text-align: center;
-    background-color: red;
+    background-color: #B11228;
 }
 
 .senhas-anteriores h1 {
