@@ -1,6 +1,7 @@
 import React from 'react';
 import Clock from './clock';
 import './index.css';
+import logo from '../../assets/logo.png';
 
 export default () => {
     return(
@@ -10,12 +11,22 @@ export default () => {
             </div>
 
             <div className="barra-lateral">
+                <div className="logo">
+                    <img src={logo} alt="logo"/>
+                </div>
                 <div className="senha-atual">
                     <h2>Senha Atual</h2>
                     <h1>S005</h1>
                 </div>
 
-                <Clock clock="ClockData"></Clock>
+                <div className="local">
+                    <h2>Local</h2>
+                    <h1>Guiche 1</h1>
+                </div>
+
+                <div className="relogio">
+                    <Clock clock="ClockData"></Clock>
+                </div>
             
             </div>
 
