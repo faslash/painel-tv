@@ -3,7 +3,7 @@ import Clock from './clock';
 import './index.css';
 import logo from '../../assets/logo.png';
 
-export default () => {
+export default function index() {
     return(
         <div className="senha">
             <div className="box-tv">

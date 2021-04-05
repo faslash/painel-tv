@@ -16,14 +16,15 @@ html,body {
     position: absolute;
 	width: 65%;
 	width: 65vw;
-	height: 80.1%;
-	height: 80.1vh;
+	height: 83.4%;
+	height: 83.4vh;
 	z-index: 1;
 	overflow: hidden;
 }
 
 .local {
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0 auto;
 }
 
