@@ -16,8 +16,8 @@ html,body {
     position: absolute;
 	width: 65%;
 	width: 65vw;
-	height: 83.4%;
-	height: 83.4vh;
+	height: 83.0%;
+	height: 83.0vh;
 	z-index: 1;
 	overflow: hidden;
 }
