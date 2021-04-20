@@ -19,9 +19,13 @@ server.listen(3001, () => {
 io.on('connection', (socket) => {
   console.log("Usuário Conectado:" + socket.id);
 
+  socket.on("triagem", (data) => {
+    socket.broadcast.emit('novaSenha', data);
+  });
+
   socket.on("senha", (data) => {
     console.log(data);
 
     socket.broadcast.emit("chamarSenha", data);
-  })
-})
+  });
+});

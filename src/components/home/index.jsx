@@ -3,16 +3,33 @@ import Clock from "./clock";
 import "./index.css";
 import io from "socket.io-client";
 import axios from "axios";
+import UIfx from 'uifx';
 import logo from "../../assets/logo.png";
+import campainha from '../../assets/campainha.wav';
 import { useEffect, useState } from "react";
 
 let socket;
-const CONNECTION_PORT = "localhost:3001/";
+const CONNECTION_PORT = "192.168.0.190:3001/";
+
 
 export default function Index() {
   const [senhaAtual, setSenhaAtual] = useState("-");
   const [localAtual, setLocalAtual] = useState("Guiche 1");
-  const [senhasAnteriores, setSenhasAnteriores] = useState("");
+  const [visible, setVisible] = useState(false);
+
+  const beep = new UIfx(
+    campainha,
+    {
+      volume: 1, // number between 0.0 ~ 1.0
+      throttleMs: 100
+    }
+  );
+  
+  const piscarSenha = () => {
+    const piscar = visible !== false ? visible = false : visible = true;
+    
+    setVisible(piscar);
+  }
 
   useEffect(() => {
     axios.get("http://localhost:3001/senhas").then((response) => {
@@ -33,8 +50,12 @@ export default function Index() {
     socket.on("chamarSenha", (data) => {
       setSenhaAtual(data["senha_atual"]);
       setLocalAtual(data["local"]);
+      piscarSenha();
+      beep.play()
     });
+    
   }, []);
+
 
   return (
     <div className="senha">
@@ -53,7 +74,7 @@ export default function Index() {
         </div>
         <div className="senha-atual">
           <h2>Senha Atual</h2>
-          <h1>{senhaAtual}</h1>
+          <h1 className={visible ? 'blinking' : 'atual'}>{senhaAtual}</h1>
         </div>
 
         <div className="local">
@@ -68,6 +89,7 @@ export default function Index() {
 
       <div className="barra-inferior">
         <div className="senhas-anteriores">
+          
           <div className="s1">
             <h1>S004</h1>
           </div>
