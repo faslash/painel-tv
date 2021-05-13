@@ -11,7 +11,7 @@ app.use(cors());
 const senhaRouter = require("./routes/Senha");
 app.use("/senhas", senhaRouter);
 
-
+// WebSocket
 server.listen(3001, () => {
   console.log("Servidor rodando na porta 3001");
 });
@@ -27,5 +27,13 @@ io.on('connection', (socket) => {
     console.log(data);
 
     socket.broadcast.emit("chamarSenha", data);
+  });
+
+  socket.on("exames", (data) => {
+    console.log(data);
+  });
+
+  socket.on("exame-andamento", (data) => {
+
   });
 });
