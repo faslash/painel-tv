@@ -12,7 +12,7 @@ const senhaRouter = require("./routes/Senha");
 app.use("/senhas", senhaRouter);
 
 // WebSocket
-server.listen(8080, () => {
+server.listen(8080, '192.168.0.226', () => {
   console.log("Servidor rodando na porta 8080");
 });
 
