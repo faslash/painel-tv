@@ -12,8 +12,8 @@ const senhaRouter = require("./routes/Senha");
 app.use("/senhas", senhaRouter);
 
 // WebSocket
-server.listen(3001, () => {
-  console.log("Servidor rodando na porta 3001");
+server.listen(8080, () => {
+  console.log("Servidor rodando na porta 8080");
 });
 
 io.on('connection', (socket) => {
