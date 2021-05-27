@@ -3,6 +3,9 @@ const app = express();
 const cors = require("cors");
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, { cors: { origin: "*" }});
+const dotenv = require('dotenv')
+
+dotenv.config({ path: "./.env" });
 
 app.use(express.json());
 app.use(cors());
@@ -12,8 +15,8 @@ const senhaRouter = require("./routes/Senha");
 app.use("/senhas", senhaRouter);
 
 // WebSocket
-server.listen(8080, '192.168.0.226', () => {
-  console.log("Servidor rodando na porta 8080");
+server.listen(process.env.PORT, process.env.HOST, () => {
+  console.log("Servidor rodando na porta " + process.env.PORT);
 });
 
 io.on('connection', (socket) => {
@@ -29,8 +32,17 @@ io.on('connection', (socket) => {
     socket.broadcast.emit("chamarSenha", data);
   });
 
+  socket.on("visualizando", (data) => {
+
+    console.log(data);
+    
+    socket.broadcast.emit("atualizarVisualizacao", data);
+  });
+
   socket.on("exames", (data) => {
     console.log(data);
+
+    socket.broadcast.emit("novos-exames", data);
   });
 
   socket.on("exame-andamento", (data) => {
