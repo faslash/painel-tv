@@ -34,9 +34,13 @@ io.on('connection', (socket) => {
 
   socket.on("visualizando", (data) => {
 
-    console.log(data);
+    console.log('Visualizando' + data);
     
     socket.broadcast.emit("atualizarVisualizacao", data);
+  });
+
+  socket.on("descartar", (data) => {
+    socket.broadcast.emit("descartarSenha", data);
   });
 
   socket.on("exames", (data) => {
