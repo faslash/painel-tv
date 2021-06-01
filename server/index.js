@@ -50,6 +50,6 @@ io.on('connection', (socket) => {
   });
 
   socket.on("exame-andamento", (data) => {
-
+    socket.broadcast.emit("atualiza-exame", data);
   });
 });
