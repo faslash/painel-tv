@@ -52,4 +52,8 @@ io.on('connection', (socket) => {
   socket.on("exame-andamento", (data) => {
     socket.broadcast.emit("atualiza-exame", data);
   });
+
+  socket.on("finaliza-exame", (data) => {
+    socket.broadcast.emit("finalizar-exame", data);
+  });
 });
