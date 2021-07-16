@@ -12,16 +12,16 @@ const db = mysql.createPool({
   database: process.env.DATABASE,
 });
 
+
 router.get("/", async (req, res) => {
   
   db.query("SELECT * FROM senha ORDER BY cod_senha DESC LIMIT 5", (err, result) => {
     if(err){
       res.send({err: err});
-    }
-
-    if(result.length > 0) {
+    } else {
       res.send(result);
     }
+      
   })
 });
 
