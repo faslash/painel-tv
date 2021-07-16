@@ -19,6 +19,10 @@ server.listen(process.env.PORT, process.env.HOST, () => {
   console.log("Servidor rodando na porta " + process.env.PORT);
 });
 
+io.on("connect_error", (err) => {
+  console.log(`connect_error due to ${err.message}`);
+});
+
 io.on('connection', (socket) => {
   console.log("Usuário Conectado:" + socket.id);
 
@@ -27,14 +31,10 @@ io.on('connection', (socket) => {
   });
 
   socket.on("senha", (data) => {
-    console.log(data);
-
     socket.broadcast.emit("chamarSenha", data);
   });
 
   socket.on("visualizando", (data) => {
-
-    console.log('Visualizando' + data);
     
     socket.broadcast.emit("atualizarVisualizacao", data);
   });
@@ -44,8 +44,6 @@ io.on('connection', (socket) => {
   });
 
   socket.on("exames", (data) => {
-    console.log(data);
-
     socket.broadcast.emit("novos-exames", data);
   });
 
@@ -56,4 +54,8 @@ io.on('connection', (socket) => {
   socket.on("finaliza-exame", (data) => {
     socket.broadcast.emit("finalizar-exame", data);
   });
+});
+
+io.on("disconnect", (reason) => {
+  console.log(reason);
 });
